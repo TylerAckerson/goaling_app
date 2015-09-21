@@ -1,0 +1,15 @@
+<% form_action = action == :new_user ? users_url : session_url %>
+<% form_button = action == :new_user ? "Create User" : "Sign In" %>
+
+<form action=" <%= form_action %>" method="post">
+  <%= auth_token %>
+  <label>Username
+    <input type="text" name="user[username]" value="">
+  </label>
+    <br>
+  <label>Password
+    <input type="password" name="user[password]" value="">
+  </label>
+
+  <input type="submit" value=" <%= form_button %>">
+</form>
