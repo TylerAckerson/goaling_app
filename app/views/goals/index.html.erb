@@ -1,1 +1,24 @@
 <h1>Goals</h1>
+
+<% @users.each do |user| %>
+<h2> <%= user.username %></h2>
+  <% user.goals.each do |goal| %>
+    <ul>
+      <li> <%= link_to goal.title, goal_url(goal) %>
+        <% if current_user == user %>
+          <% unless goal.completed %>
+            <%= button_to "Delete", goal_url(goal), method: :delete %>
+            <%= button_to "Update", edit_goal_url(goal), method: :get %>
+            <%= button_to "Mark Completed", complete_goal_url(goal) %>
+          <% else %>
+            Completed
+          <% end %>
+        <% end %>
+      </li>
+    </ul>
+  <% end %>
+<% end %>
+
+<br>
+
+<%= link_to "Create New Goal", new_goal_url %>

@@ -1,0 +1,36 @@
+<% form_action = action == :new ? goals_url : goal_url(@goal) %>
+<% form_value = action == :new ? "POST" : "PATCH" %>
+<% form_button = action == :new ? "Create" : "Update" %>
+
+<form action="<%= form_action %>" method="post">
+  <input type="hidden" name="_method" value="<%= form_value %>">
+
+  <%= auth_token %>
+
+  <label>Goal <br>
+    <textarea name="goal[title]" rows="8" cols="40">
+      <%= goal.title %>
+    </textarea>
+  </label>
+
+  <br><br>
+
+  <input type="radio"
+               name="goal[prvt]"
+               id="private_goal_true"
+               value=true
+               checked="<%= 'checked' if goal.prvt? %>">
+   <label for="private_goal_true">Private</label>
+   <br>
+
+   <input type="radio"
+          name="goal[prvt]"
+          id="private_goal_false"
+          value=false
+          checked="<%= 'checked' unless goal.prvt? %>">
+   <label for="private_goal_false">Public</label>
+
+  <br><br>
+
+  <input type="submit" value="<%= form_button %> Goal">
+</form>
