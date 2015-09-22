@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   has_many :goals,
     dependent: :destroy
 
+  has_many :comments, as: :commentable
+
   def self.find_by_credentials(username, password)
     user = User.find_by_username(username)
     return nil unless user && user.is_password?(password)

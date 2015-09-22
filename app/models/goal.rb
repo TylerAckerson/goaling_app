@@ -17,6 +17,8 @@ class Goal < ActiveRecord::Base
 
   belongs_to :user
 
+  has_many :comments, as: :commentable
+
   def prvt?
     self.prvt
   end
